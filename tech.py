@@ -5,7 +5,9 @@ import re
 
 # Page setup
 st.set_page_config(page_title="Python Loop Runner", layout="centered")
-st.title("Welcome to Aditi's Python🐍 Tech")
+st.title("Welcome to Code with Aditi ✌️👨‍💻")
+st.title("Python Prorgrams")
+
 
 # Function to execute Python code and capture output
 def run_code_block(code):
@@ -17,8 +19,32 @@ def run_code_block(code):
             return f"❌ Error: {e}"
     return output.getvalue()
 
-# Topic selection
-topic = st.selectbox("🔍 Select a Topic", ["For Loop", "While Loop","LIST","dictonary"])
+st.markdown("### 🔍 Select a Topic")
+
+topics = {
+    "For Loop": "for_loop",
+    "While Loop": "while_loop",
+    "LIST": "list_topic",
+    "Dictionary": "dictionary"
+}
+
+topic_labels = list(topics.keys())
+selected_topic = None
+
+# Create one row with as many columns as topics
+cols = st.columns(len(topic_labels))
+
+# Render each button in its column
+for i, label in enumerate(topic_labels):
+    with cols[i]:
+        if st.button(f"🧠 {label}"):
+            selected_topic = label
+
+# Fallback if no button is clicked
+topic = selected_topic if selected_topic else "For Loop"
+
+st.markdown("---")
+
 
 # ---------------- FOR LOOP ----------------
 if topic == "For Loop":
@@ -545,7 +571,7 @@ print(a[2:3:1])"""
         result=run_code_block(code13)
         st.text_area("🖨️ Output:", result, height=100)
 # ---------------- dictonary ----------------
-if topic == "dictonary":
+if topic == "Dictionary":
     st.markdown("## 🔁 dictonary Examples")
     #code block 1
     st.markdown("### find dictonary key")
@@ -882,3 +908,5 @@ print("multi of dis",result)"""
 # #         st.text(dry_run(code))
 # #     except Exception as e:
 # #         st.error(f"Error: {e}")
+
+
