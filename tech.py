@@ -53,7 +53,8 @@ topics = {
     "For Loop": "🔁",
     "While Loop": "🔂",
     "LIST": "📋",
-    "Dictionary": "📖"
+    "Dictionary": "📖",
+    "project": "🍕🍽️🚀"
 }
 
 topic_labels = list(topics.keys())
@@ -613,7 +614,7 @@ if topic == "Dictionary":
 ]
 print(a[0]['name'])"""
     st.code(code1,language="python") 
-    if st.button("▶️ Run  LIST Block 1"):
+    if st.button("▶️ Run  dic Block 1"):
         result=run_code_block(code1)
         st.text_area("🖨️ Output:", result, height=100) 
     #code Block 2 
@@ -649,7 +650,7 @@ for i in movies:
     #if 2012<i["year"]<2019:
        #print("movienamein2025=",i["name"])""" 
     st.code(code2,language="python") 
-    if st.button("▶️ Run  LIST Block 2"):
+    if st.button("▶️ Run  dic Block 2"):
         result=run_code_block(code2)
         st.text_area("🖨️ Output:", result, height=100)
     #code Block 3
@@ -665,7 +666,7 @@ second_largest = sorted_values[1]
 print("Second largest value:", second_largest)"""
 
     st.code(code3,language="python") 
-    if st.button("▶️ Run  LIST Block 3"):
+    if st.button("▶️ Run  dic Block 3"):
         result=run_code_block(code3)
         st.text_area("🖨️ Output:", result, height=100)
     #code Block 4
@@ -678,9 +679,86 @@ for value in dis.values():
 #print("sum of dis",total)
 print("multi of dis",result)"""
     st.code(code4,language="python") 
-    if st.button("▶️ Run  LIST Block 4"):
+    if st.button("▶️ Run  dic Block 4"):
         result=run_code_block(code4)
         st.text_area("🖨️ Output:", result, height=100)
+    # ---------------- project ----------------
+if topic == "project":
+    st.markdown("## 🔁 mini project on the basis of python")
+    # project of python
+    st.markdown("### restourant menu ")
+    code1="""from colorama import Fore, Style
+from tabulate import tabulate
+import time
+
+# Menu Data
+menu_list = [
+    ["Pizza 🍕", 150],
+    ["Burger 🍔", 120],
+    ["Fries 🍟", 70],
+    ["Pasta 🍝", 130],
+    ["Ice Cream 🍨", 90]
+    
+]
+#🎉❤#
+# Welcome Message
+print(Fore.YELLOW + "\n🍽️ Welcome to Aditi's Restaurant! 🍽️\n" + Style.RESET_ALL)
+print("Loading Menu", end="")
+for i in range(3):
+    time.sleep(0.5)
+    print(".", end="")
+print("\n")
+
+# Show Menu
+print(Fore.YELLOW + tabulate(menu_list, headers=["Item", "Price ₹"], tablefmt="fancy_grid") + Style.RESET_ALL)
+
+# Ask to start ordering
+choice = input(Fore.CYAN + "\nKya aap order dena chahenge? (yes/no): " + Style.RESET_ALL).strip().lower()
+
+if choice == "yes":
+    total = 0
+    order_items = []
+
+    while True:
+        order = input(Fore.GREEN + "\nEnter item name: " + Style.RESET_ALL).strip().lower()
+
+        found = False
+        for item in menu_list:
+            if item[0].lower().startswith(order):  # Partial match
+                print(Fore.MAGENTA + f"✅ Added: {item[0]} - ₹{item[1]}" + Style.RESET_ALL)
+                total += item[1]
+                order_items.append(item[0])
+                found = True
+                break
+
+        if not found:
+            print(Fore.RED + "❌ Sorry, item not found in menu!" + Style.RESET_ALL)
+
+        # Ask if want to continue ordering
+        more = input(Fore.CYAN + "Kya aap aur kuch order karna chahenge? (yes/no): " + Style.RESET_ALL).strip().lower()
+        if more == "no":
+            break
+
+    # Final Summary
+    if total > 0:
+        print(Fore.CYAN + "\n🧾 Aapka Order Summary:" + Style.RESET_ALL)
+        for item in order_items:
+            print(Fore.LIGHTWHITE_EX + f" - {item}" + Style.RESET_ALL)
+        print(Fore.GREEN + f"\n💰 Total Bill: ₹{total}" + Style.RESET_ALL)
+
+        if total >= 300:
+            print(Fore.YELLOW + "🎁 Mubarak ho! Aapko ek Free Dessert Coupon mila hai! 🍮" + Style.RESET_ALL)
+
+        print(Fore.CYAN + "\n🙏 Dhanyavaad! Aapka din shubh ho!\n" + Style.RESET_ALL)
+    else:
+        print(Fore.LIGHTRED_EX + "\nAapne koi item order nahi kiya.\n" + Style.RESET_ALL)
+else:
+    print(Fore.LIGHTBLUE_EX + "\nTheek hai! Kabhi aur zaroor aaiyega 😊\n "  + Style.RESET_ALL)"""
+    st.code(code1,language="python") 
+    if st.button("▶️ Run  project block 1"):
+        result=run_code_block(code1)
+        st.text_area("🖨️ Output:", result, height=200)
+    
     
 
             
