@@ -4,10 +4,37 @@ import contextlib
 import re
 
 # Page setup
-st.set_page_config(page_title="Python Loop Runner", layout="centered")
-st.title("Welcome to Code with Aditi ✌️👨‍💻")
-st.title("Python Prorgrams")
+# st.set_page_config(page_title="Python Loop Runner", layout="centered")
 
+# st.title("Welcome to Code with Aditi ✌️")
+
+# # Display the title and snake GIF side by side
+# col1, col2 = st.columns([1, 5])
+
+# with col1:
+#     st.image(
+#         "https://media.tenor.com/gG_YcgI43_UAAAAM/snake-yas.gif", 
+#         width=100
+#     )
+
+# with col2:
+#     st.title("Python Programs")
+
+
+st.set_page_config(page_title="Python Loop Runner", layout="centered")
+
+st.title("Welcome to Code with Aditi ✌️")
+
+# Inline title + gif on the same line using HTML in markdown
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <h1 style="margin: 0;">Python Programs</h1>
+        <img src="https://media.tenor.com/gG_YcgI43_UAAAAM/snake-yas.gif" width="80" />
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Function to execute Python code and capture output
 def run_code_block(code):
@@ -21,29 +48,31 @@ def run_code_block(code):
 
 st.markdown("### 🔍 Select a Topic")
 
+# Define topics with custom emojis
 topics = {
-    "For Loop": "for_loop",
-    "While Loop": "while_loop",
-    "LIST": "list_topic",
-    "Dictionary": "dictionary"
+    "For Loop": "🔁",
+    "While Loop": "🔂",
+    "LIST": "📋",
+    "Dictionary": "📖"
 }
 
 topic_labels = list(topics.keys())
 selected_topic = None
 
-# Create one row with as many columns as topics
+# Create a single row with as many columns as topics
 cols = st.columns(len(topic_labels))
 
-# Render each button in its column
+# Render buttons with topic-specific emojis
 for i, label in enumerate(topic_labels):
     with cols[i]:
-        if st.button(f"🧠 {label}"):
+        if st.button(f"{topics[label]} {label}"):
             selected_topic = label
 
-# Fallback if no button is clicked
+# Default topic
 topic = selected_topic if selected_topic else "For Loop"
 
 st.markdown("---")
+
 
 
 # ---------------- FOR LOOP ----------------
