@@ -3,11 +3,9 @@ import io
 import contextlib
 import re
 
-# hello i am aditi
-
 # Page setup
 st.set_page_config(page_title="Python Loop Runner", layout="centered")
-st.title("Welcome to Aditi Python🐍 Tech")
+st.title("Welcome to Aditi's Python🐍 Tech")
 
 # Function to execute Python code and capture output
 def run_code_block(code):
@@ -20,7 +18,7 @@ def run_code_block(code):
     return output.getvalue()
 
 # Topic selection
-topic = st.selectbox("🔍 Select a Topic", ["For Loop", "While Loop","LIST"])
+topic = st.selectbox("🔍 Select a Topic", ["For Loop", "While Loop","LIST","dictonary"])
 
 # ---------------- FOR LOOP ----------------
 if topic == "For Loop":
@@ -222,6 +220,8 @@ print(factorial)"""
     if st.button("▶️ Run Code Block 17"):
         result = run_code_block(modified_code17)
         st.text_area("🖨️ Output:", result, height=100)
+        
+    
 
 
 
@@ -496,7 +496,141 @@ print("Duplicate elements:", duplicates)"""
     if st.button("▶️ Run  LIST Block 10"):
         result=run_code_block(code10)
         st.text_area("🖨️ Output:", result, height=100)
+    #code Block 11
+    st.markdown("###two seprate list find even and odd")
+    code11="""a=[1,2,3,4,5,6,7,8]
+b=[10,11,21,33,66,]
+even=[]
+odd=[]
+for i in a:
+    for j in b:
+        if i%2==0:
+            even.append(a)
+            print("even",a)
+        
+else:
+    odd.append(a)
+    print("odd",odd)
+if j%2==0:
+    even.append(b)
+    print(even);
+else:
+    j%2!=0
+    odd.append(b)
+    print("odd number",odd)"""
+    st.code(code11,language="python")
+    if st.button("▶️ Run  LIST Block 11"):
+        result=run_code_block(code11)
+        st.text_area("🖨️ Output:", result, height=100)
+    #code Block 12
+    st.markdown("find out unique element in list")
+    code12="""my_list = [1, 2, 2, 3, 4, 4, 5, 1]
+unique_elements = list(set(my_list))
+print("Unique elements:", unique_elements)"""
+    st.code(code12,language="python")
+    if st.button("▶️ Run  LIST Block 12"):
+        result=run_code_block(code12)
+        st.text_area("🖨️ Output:", result, height=100)
+        #code Block 13
+    st.markdown("### list operation")
+    code13="""a=[1,2,3,4,5,6,7,8,9]
+#b=[3,4,5,6,7]
+#print(a+b)#concation
+#repetion
+#
+# print(a*5)
+print(a[2:3:1])"""
+    st.code(code13,language="python")
+    if st.button("▶️ Run  LIST Block 13"):
+        result=run_code_block(code13)
+        st.text_area("🖨️ Output:", result, height=100)
+# ---------------- dictonary ----------------
+if topic == "dictonary":
+    st.markdown("## 🔁 dictonary Examples")
+    #code block 1
+    st.markdown("### find dictonary key")
+    code1="""a=[
 
+  { "name":"aditi","age": 21},
+  {
+      "name":"aditi", "age":28
+  }
+]
+print(a[0]['name'])"""
+    st.code(code1,language="python") 
+    if st.button("▶️ Run  LIST Block 1"):
+        result=run_code_block(code1)
+        st.text_area("🖨️ Output:", result, height=100) 
+    #code Block 2 
+    st.code("### movie program find salman actor and other logic")
+    code2="""movies=[
+    {
+        "name":"race","year":2025,"actor":["salman","kat","saif"]
+    },
+    {
+        "name":"ready","year":2022,"actor":["salman","prem","ashin"]
+
+    },
+    {
+        "name":"ham sath sath hai ","year":2012,"actor":["salman","kat","srukh"]
+    },
+    {
+        "name":"ham aapke  kon", "year":2016,"actor":["mohnish bahl","madhuri","reema"]
+    },
+    {
+        "name":"animal","year":2025,"actor":["ranbir","rashmika","geetanjali"]
+    },
+]
+#for i in movies:
+    #print("movies name=",i["name"]);
+#for i in movies:
+    #print("movies name=",i["name"])
+   # print("movie actors=",i["actor"])
+for i in movies:
+        if "salman" in i["actor"]:
+             print("salaman movie=",i["name"]);
+#for i in movies:
+    #if i["year"]==2025:
+    #if 2012<i["year"]<2019:
+       #print("movienamein2025=",i["name"])""" 
+    st.code(code2,language="python") 
+    if st.button("▶️ Run  LIST Block 2"):
+        result=run_code_block(code2)
+        st.text_area("🖨️ Output:", result, height=100)
+    #code Block 3
+    st.code("### find the max of a dictonary ")
+    code3="""a = {"a": 50, "b": 80, "c": 60, "d": 90}
+
+# Extract values, sort them in descending order
+sorted_values = sorted(a.values(), reverse=True)
+
+# Get the second-largest value
+second_largest = sorted_values[1]
+
+print("Second largest value:", second_largest)"""
+
+    st.code(code3,language="python") 
+    if st.button("▶️ Run  LIST Block 3"):
+        result=run_code_block(code3)
+        st.text_area("🖨️ Output:", result, height=100)
+    #code Block 4
+    st.markdown("### sum of dictonary ")
+    code4="""dis={"a":10,"b":21,"c":30}
+result=1
+for value in dis.values():
+    #total+=1
+     result *=value
+#print("sum of dis",total)
+print("multi of dis",result)"""
+    st.code(code4,language="python") 
+    if st.button("▶️ Run  LIST Block 4"):
+        result=run_code_block(code4)
+        st.text_area("🖨️ Output:", result, height=100)
+    
+
+            
+       
+    
     
 
        
@@ -748,5 +882,3 @@ print("Duplicate elements:", duplicates)"""
 # #         st.text(dry_run(code))
 # #     except Exception as e:
 # #         st.error(f"Error: {e}")
-
-
