@@ -4,28 +4,8 @@ import contextlib
 import re
 
 # Page setup
-# st.set_page_config(page_title="Python Loop Runner", layout="centered")
-
-# st.title("Welcome to Code with Aditi ✌️")
-
-# # Display the title and snake GIF side by side
-# col1, col2 = st.columns([1, 5])
-
-# with col1:
-#     st.image(
-#         "https://media.tenor.com/gG_YcgI43_UAAAAM/snake-yas.gif", 
-#         width=100
-#     )
-
-# with col2:
-#     st.title("Python Programs")
-
-
 st.set_page_config(page_title="Python Loop Runner", layout="centered")
-
 st.title("Welcome to Code with Aditi ✌️")
-
-# Inline title + gif on the same line using HTML in markdown
 st.markdown(
     """
     <div style="display: flex; align-items: center; gap: 10px;">
@@ -35,6 +15,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
 
 # Function to execute Python code and capture output
 def run_code_block(code):
@@ -46,35 +27,12 @@ def run_code_block(code):
             return f"❌ Error: {e}"
     return output.getvalue()
 
-st.markdown("### 🔍 Select a Topic")
+# # Topic selection
+# topic = st.selectbox("🔍 Select a Topic", ["For Loop", "While Loop","LIST","dictonary"])
+topic = st.radio("Choose a concept to demonstrate:", 
+                  ("For Loop", "While Loop", "List", "Dictonary","Project"))
 
-# Define topics with custom emojis
-topics = {
-    "For Loop": "🔁",
-    "While Loop": "🔂",
-    "LIST": "📋",
-    "Dictionary": "📖",
-    "project": "🍕🍽️🚀"
-}
-
-topic_labels = list(topics.keys())
-selected_topic = None
-
-# Create a single row with as many columns as topics
-cols = st.columns(len(topic_labels))
-
-# Render buttons with topic-specific emojis
-for i, label in enumerate(topic_labels):
-    with cols[i]:
-        if st.button(f"{topics[label]} {label}"):
-            selected_topic = label
-
-# Default topic
-topic = selected_topic if selected_topic else "For Loop"
-
-st.markdown("---")
-
-
+st.divider()
 
 # ---------------- FOR LOOP ----------------
 if topic == "For Loop":
@@ -393,11 +351,11 @@ else:
         st.text_area("🖨️ Output:", result, height=100)
         
         
-        
+        st
         
 
 #--------------------LIST CODE-------------------
-elif topic == "LIST":
+elif topic == "List":
 
     st.markdown("## 🔁 LIST Examples")
     #code Block 1
@@ -452,7 +410,7 @@ print(total)"""
     code5="""a=[22,16,17,18,19,20]
 maximum=a[0]
 minimum=a[0]
-for num in a:
+for num in a: 
 
     if num>maximum:
         maximum=num
@@ -601,7 +559,7 @@ print(a[2:3:1])"""
         result=run_code_block(code13)
         st.text_area("🖨️ Output:", result, height=100)
 # ---------------- dictonary ----------------
-if topic == "Dictionary":
+elif topic == "Dictonary":
     st.markdown("## 🔁 dictonary Examples")
     #code block 1
     st.markdown("### find dictonary key")
@@ -614,7 +572,7 @@ if topic == "Dictionary":
 ]
 print(a[0]['name'])"""
     st.code(code1,language="python") 
-    if st.button("▶️ Run  dic Block 1"):
+    if st.button("▶️ Run  LIST Block 1"):
         result=run_code_block(code1)
         st.text_area("🖨️ Output:", result, height=100) 
     #code Block 2 
@@ -650,7 +608,7 @@ for i in movies:
     #if 2012<i["year"]<2019:
        #print("movienamein2025=",i["name"])""" 
     st.code(code2,language="python") 
-    if st.button("▶️ Run  dic Block 2"):
+    if st.button("▶️ Run  LIST Block 2"):
         result=run_code_block(code2)
         st.text_area("🖨️ Output:", result, height=100)
     #code Block 3
@@ -666,7 +624,7 @@ second_largest = sorted_values[1]
 print("Second largest value:", second_largest)"""
 
     st.code(code3,language="python") 
-    if st.button("▶️ Run  dic Block 3"):
+    if st.button("▶️ Run  LIST Block 3"):
         result=run_code_block(code3)
         st.text_area("🖨️ Output:", result, height=100)
     #code Block 4
@@ -679,18 +637,16 @@ for value in dis.values():
 #print("sum of dis",total)
 print("multi of dis",result)"""
     st.code(code4,language="python") 
-    if st.button("▶️ Run  dic Block 4"):
+    if st.button("▶️ Run  LIST Block 4"):
         result=run_code_block(code4)
         st.text_area("🖨️ Output:", result, height=100)
-    # ---------------- project ----------------
-if topic == "project":
-    st.markdown("## 🔁 mini project on the basis of python")
-    # project of python
-    st.markdown("### restourant menu ")
-    code1="""from colorama import Fore, Style
-from tabulate import tabulate
-import time
+    
+# ---------------- project ----------------
+elif topic == "Project":
+    st.markdown("## 🍽️ Aditi's Restaurant Ordering System")
 
+    # --- Show the project code first ---
+    project_code = '''
 # Menu Data
 menu_list = [
     ["Pizza 🍕", 150],
@@ -698,72 +654,95 @@ menu_list = [
     ["Fries 🍟", 70],
     ["Pasta 🍝", 130],
     ["Ice Cream 🍨", 90]
-    
 ]
-#🎉❤#
-# Welcome Message
-print(Fore.YELLOW + "\n🍽️ Welcome to Aditi's Restaurant! 🍽️\n" + Style.RESET_ALL)
-print("Loading Menu", end="")
-for i in range(3):
-    time.sleep(0.5)
-    print(".", end="")
-print("\n")
 
-# Show Menu
-print(Fore.YELLOW + tabulate(menu_list, headers=["Item", "Price ₹"], tablefmt="fancy_grid") + Style.RESET_ALL)
+menu_dict = {item[0]: item[1] for item in menu_list}
 
-# Ask to start ordering
-choice = input(Fore.CYAN + "\nKya aap order dena chahenge? (yes/no): " + Style.RESET_ALL).strip().lower()
+# Ordering logic (Streamlit version)
+if "order_items" not in st.session_state:
+    st.session_state.order_items = []
+    st.session_state.total = 0
 
-if choice == "yes":
-    total = 0
-    order_items = []
+order = st.selectbox("Select an item to add to your order:", [item[0] for item in menu_list])
+if st.button("Add to Order"):
+    st.session_state.order_items.append(order)
+    st.session_state.total += menu_dict[order]
+    st.success(f"✅ Added: {order} - ₹{menu_dict[order]}")
 
-    while True:
-        order = input(Fore.GREEN + "\nEnter item name: " + Style.RESET_ALL).strip().lower()
+if st.session_state.order_items:
+    st.markdown("#### 🧾 Your Current Order:")
+    for item in st.session_state.order_items:
+        st.write(f"- {item}")
+    st.write(f"**💰 Total Bill: ₹{st.session_state.total}**")
 
-        found = False
-        for item in menu_list:
-            if item[0].lower().startswith(order):  # Partial match
-                print(Fore.MAGENTA + f"✅ Added: {item[0]} - ₹{item[1]}" + Style.RESET_ALL)
-                total += item[1]
-                order_items.append(item[0])
-                found = True
-                break
+    if st.button("Finish Order"):
+        st.markdown("### 🧾 Order Summary")
+        for item in st.session_state.order_items:
+            st.write(f"- {item}")
+        st.write(f"**💰 Total Bill: ₹{st.session_state.total}**")
 
-        if not found:
-            print(Fore.RED + "❌ Sorry, item not found in menu!" + Style.RESET_ALL)
+        if st.session_state.total >= 300:
+            st.success("🎁 Mubarak ho! Aapko ek Free Dessert Coupon mila hai! 🍮")
+        else:
+            st.info("Theek hai! Kabhi aur zaroor aaiyega 😊")
+        st.markdown("🙏 Dhanyavaad! Aapka din shubh ho!")
 
-        # Ask if want to continue ordering
-        more = input(Fore.CYAN + "Kya aap aur kuch order karna chahenge? (yes/no): " + Style.RESET_ALL).strip().lower()
-        if more == "no":
-            break
-
-    # Final Summary
-    if total > 0:
-        print(Fore.CYAN + "\n🧾 Aapka Order Summary:" + Style.RESET_ALL)
-        for item in order_items:
-            print(Fore.LIGHTWHITE_EX + f" - {item}" + Style.RESET_ALL)
-        print(Fore.GREEN + f"\n💰 Total Bill: ₹{total}" + Style.RESET_ALL)
-
-        if total >= 300:
-            print(Fore.YELLOW + "🎁 Mubarak ho! Aapko ek Free Dessert Coupon mila hai! 🍮" + Style.RESET_ALL)
-
-        print(Fore.CYAN + "\n🙏 Dhanyavaad! Aapka din shubh ho!\n" + Style.RESET_ALL)
-    else:
-        print(Fore.LIGHTRED_EX + "\nAapne koi item order nahi kiya.\n" + Style.RESET_ALL)
+        # Reset order for a new session
+        st.session_state.order_items = []
+        st.session_state.total = 0
 else:
-    print(Fore.LIGHTBLUE_EX + "\nTheek hai! Kabhi aur zaroor aaiyega 😊\n "  + Style.RESET_ALL)"""
-    st.code(code1,language="python") 
-    if st.button("▶️ Run  project block 1"):
-        result=run_code_block(code1)
-        st.text_area("🖨️ Output:", result, height=200)
-    
-    
+    st.info("Aapne abhi tak koi item order nahi kiya hai.")
+'''
 
-            
-       
-    
+    st.code(project_code, language="python")
+
+    # --- Now show the interactive output ---
+    menu_list = [
+        ["Pizza 🍕", 150],
+        ["Burger 🍔", 120],
+        ["Fries 🍟", 70],
+        ["Pasta 🍝", 130],
+        ["Ice Cream 🍨", 90]
+    ]
+    menu_dict = {item[0]: item[1] for item in menu_list}
+
+    st.markdown("### Menu")
+    st.table(menu_list)
+
+    if "order_items" not in st.session_state:
+        st.session_state.order_items = []
+        st.session_state.total = 0
+
+    st.markdown("#### Start Your Order")
+    order = st.selectbox("Select an item to add to your order:", [item[0] for item in menu_list])
+    if st.button("Add to Order"):
+        st.session_state.order_items.append(order)
+        st.session_state.total += menu_dict[order]
+        st.success(f"✅ Added: {order} - ₹{menu_dict[order]}")
+
+    if st.session_state.order_items:
+        st.markdown("#### 🧾 Your Current Order:")
+        for item in st.session_state.order_items:
+            st.write(f"- {item}")
+        st.write(f"**💰 Total Bill: ₹{st.session_state.total}**")
+
+        if st.button("Finish Order"):
+            st.markdown("### 🧾 Order Summary")
+            for item in st.session_state.order_items:
+                st.write(f"- {item}")
+            st.write(f"**💰 Total Bill: ₹{st.session_state.total}**")
+
+            if st.session_state.total >= 300:
+                st.success("🎁 Mubarak ho! Aapko ek Free Dessert Coupon mila hai! 🍮")
+            else:
+                st.info("Theek hai! Kabhi aur zaroor aaiyega 😊")
+            st.markdown("🙏 Dhanyavaad! Aapka din shubh ho!")
+
+            # Reset order for a new session
+            st.session_state.order_items = []
+            st.session_state.total = 0
+    else:
+        st.info("Aapne abhi tak koi item order nahi kiya hai.")
     
 
        
